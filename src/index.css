@@ -9,19 +9,20 @@
 @layer base {
   :root {
     /* Dark Theme Base Colors (HSL) */
-    --bg-dark: 220 50% 5%;           /* Deep midnight blue-black */
-    --bg-secondary: 220 45% 10%;     /* Lighter dark blue */
-    --bg-card: 220 40% 15%;          /* Dark slate for cards */
+    --bg-dark: 220 50% 2%;           /* Deep space black */
+    --bg-secondary: 220 45% 8%;      /* Dark astronomy blue */
+    --bg-card: 220 40% 12%;          /* Card background */
     
-    /* Text Colors */
-    --text-light: 210 30% 95%;       /* Soft white */
-    --text-muted: 200 60% 70%;       /* Muted cyan */
+    /* Text Colors - Using 00ffff (#00ffff = 180 100% 50%) */
+    --text-primary: 180 100% 50%;    /* Main cyan text #00ffff */
+    --text-light: 180 100% 95%;      /* Light cyan */
+    --text-muted: 180 60% 70%;       /* Muted cyan for readability */
     
     /* Neon Accent Colors */
-    --neon-cyan: 180 100% 50%;       /* Primary neon cyan */
-    --neon-blue: 200 100% 40%;       /* Buttons, highlights */
-    --electric-blue: 190 100% 50%;   /* Futuristic flair */
-    --neon-purple: 300 100% 50%;     /* Modern accent */
+    --neon-cyan: 180 100% 50%;       /* Primary neon cyan #00ffff */
+    --neon-blue: 200 100% 45%;       /* Astronomy blue */
+    --electric-blue: 190 100% 50%;   /* Electric accent */
+    --neon-purple: 280 100% 60%;     /* Space purple */
     
     /* Glassmorphism */
     --glass-bg: 220 40% 15% / 0.1;
@@ -29,15 +30,15 @@
     
     /* Design System Colors */
     --background: var(--bg-dark);
-    --foreground: var(--text-light);
+    --foreground: var(--text-primary);
     --card: var(--bg-card);
-    --card-foreground: var(--text-light);
+    --card-foreground: var(--text-primary);
     --popover: var(--bg-card);
-    --popover-foreground: var(--text-light);
+    --popover-foreground: var(--text-primary);
     --primary: var(--neon-cyan);
     --primary-foreground: var(--bg-dark);
     --secondary: var(--bg-secondary);
-    --secondary-foreground: var(--text-light);
+    --secondary-foreground: var(--text-primary);
     --muted: var(--bg-secondary);
     --muted-foreground: var(--text-muted);
     --accent: var(--electric-blue);
@@ -198,13 +199,21 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     text-transform: uppercase;
-    text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan));
+    color: hsl(var(--text-primary));
+    text-shadow: 0 0 15px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan)), 0 0 45px hsl(var(--neon-cyan));
   }
 
   .heading-secondary {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
+    color: hsl(var(--text-primary));
+    text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan));
+  }
+
+  .text-paragraph {
+    color: hsl(var(--text-primary));
+    text-shadow: 0 0 3px hsl(var(--neon-cyan) / 0.3);
   }
 
   /* Glass Effect Classes */
@@ -239,7 +248,12 @@
 
   .neon-text {
     color: hsl(var(--neon-cyan));
-    text-shadow: 0 0 10px hsl(var(--neon-cyan));
+    text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan));
+  }
+
+  .text-glow-subtle {
+    color: hsl(var(--text-primary));
+    text-shadow: 0 0 2px hsl(var(--neon-cyan) / 0.4);
   }
 
   /* Animation Classes */
@@ -290,30 +304,108 @@
     transition: var(--transition-glow);
   }
 
-  /* Ripple Effect */
-  .ripple {
+  /* Simple Button Effect */
+  .btn-simple {
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
   }
 
-  .ripple::after {
-    content: '';
+  .btn-simple:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.5);
+  }
+
+  .btn-simple:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  /* Page Transitions */
+  .page-transition {
+    animation: pageEnter 0.8s ease-out;
+  }
+
+  @keyframes pageEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes particleFloat {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(50px, -50px) scale(0);
+    }
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* Astronomy Background */
+  .astronomy-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b1b3a 0%, #0a0a1a 100%);
+    z-index: -2;
+  }
+
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .star {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
+    width: 2px;
+    height: 2px;
+    background: hsl(var(--neon-cyan));
     border-radius: 50%;
-    background: radial-gradient(circle, hsl(var(--neon-cyan)) 0%, hsl(var(--neon-purple)) 100%);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-    z-index: 0;
+    animation: twinkle 3s ease-in-out infinite alternate;
+    box-shadow: 0 0 6px hsl(var(--neon-cyan));
   }
 
-  .ripple:active::after {
-    width: 300px;
-    height: 300px;
-    animation: ripple 0.6s ease-out;
+  .star.moving {
+    animation: starMove 20s linear infinite, twinkle 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes starMove {
+    0% { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+  }
+
+  @keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Landscape Silhouette */
+  .landscape {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh;
+    background: linear-gradient(to top, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+    z-index: -1;
   }
 
   /* Floating Particles Background */
@@ -329,13 +421,13 @@
 
   .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     background: hsl(var(--neon-cyan));
     border-radius: 50%;
-    animation: floatAround 20s linear infinite;
-    opacity: 0.6;
-    box-shadow: 0 0 6px hsl(var(--neon-cyan));
+    animation: floatAround 25s linear infinite;
+    opacity: 0.4;
+    box-shadow: 0 0 4px hsl(var(--neon-cyan));
   }
 
   /* Parallax Effect */

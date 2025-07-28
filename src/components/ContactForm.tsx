@@ -20,21 +20,38 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent(formData.subject || 'Contact from Summit Seekers Website');
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      const mailtoLink = `mailto:summit.seeker.pk@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
       toast({
-        title: "Message Sent!",
-        description: "We'll get back to you soon. Keep exploring!",
+        title: "Email Client Opened!",
+        description: "Your default email app should open with the message pre-filled.",
         duration: 5000
       });
+      
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: ''
       });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Please try sending the email manually to summit.seeker.pk@gmail.com",
+        duration: 5000
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -93,7 +110,10 @@ const ContactForm = () => {
               <div className="border-t border-primary/20 pt-8">
                 <h3 className="text-lg font-semibold mb-4 text-foreground">Follow Our Adventures</h3>
                 <div className="flex space-x-4">
-                  <button className="p-3 bg-primary/10 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300 hover-scale neon-glow">
+                  <button 
+                    className="p-3 bg-primary/10 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300 hover-scale neon-glow"
+                    onClick={() => window.open('https://www.instagram.com/summit.seekers.pk/profilecard/?igsh=MW43bWsxNnh5cWNjaA==', '_blank')}
+                  >
                     <Instagram className="w-5 h-5 text-primary" />
                   </button>
                   
@@ -149,7 +169,7 @@ const ContactForm = () => {
                   <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} rows={6} className="bg-bg-dark border-primary/30 focus:border-primary text-foreground placeholder:text-muted resize-none" placeholder="Tell us about your adventure plans, questions, or just say hello!" />
                 </div>
 
-                <Button type="submit" disabled={isSubmitting} className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-accent hover:to-primary neon-glow hover-scale ripple disabled:opacity-50 disabled:cursor-not-allowed group">
+                <Button type="submit" disabled={isSubmitting} className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-accent hover:to-primary neon-glow hover-scale btn-simple disabled:opacity-50 disabled:cursor-not-allowed group">
                   {isSubmitting ? <>
                       <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
                       Sending...

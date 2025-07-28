@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Instagram, ExternalLink } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 const InstagramSection = () => {
   return (
@@ -10,9 +10,9 @@ const InstagramSection = () => {
           <h2 className="heading-secondary text-3xl md:text-5xl neon-text mb-4">
             Follow the Ascent
           </h2>
-          <p className="text-xl text-muted">
-            Join our community and experience the journey through our lens
-          </p>
+            <p className="text-xl text-glow-subtle">
+              Join our community and experience the journey through our lens
+            </p>
         </div>
 
         {/* Instagram Feed Card */}
@@ -22,7 +22,7 @@ const InstagramSection = () => {
             <h3 className="text-2xl font-bold mb-4 text-foreground">
               Connect With Us on Instagram
             </h3>
-            <p className="text-lg text-muted leading-relaxed mb-8">
+            <p className="text-lg text-glow-subtle leading-relaxed mb-8">
               Get behind-the-scenes glimpses of our adventures, stunning mountain photography, 
               and real-time updates from our expeditions. Every post tells a story of courage, 
               beauty, and the unbreakable bond between adventurers and the mountains they love.
@@ -44,16 +44,16 @@ const InstagramSection = () => {
           {/* CTA Button */}
           <Button 
             size="lg"
-            className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-accent hover:to-primary neon-glow hover-scale ripple group"
-            onClick={() => window.open('https://instagram.com', '_blank')}
+            className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-accent hover:to-primary neon-glow hover-scale btn-simple group"
+            onClick={() => window.open('https://www.instagram.com/summit.seekers.pk/profilecard/?igsh=MW43bWsxNnh5cWNjaA==', '_blank')}
           >
             Join the Ascent
-            <ExternalLink className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+            <Instagram className="w-5 h-5 ml-2 group-hover:rotate-12 transition-transform duration-300" />
           </Button>
 
           {/* QR Code Placeholder */}
           <div className="mt-8 pt-8 border-t border-primary/20">
-            <p className="text-sm text-muted mb-4">Scan to follow us instantly</p>
+            <p className="text-sm text-glow-subtle mb-4">Scan to follow us instantly</p>
             <div className="w-32 h-32 mx-auto border-2 border-primary/30 rounded-lg flex items-center justify-center bg-bg-dark hover-glow">
               <img 
                 src="/lovable-uploads/e2c2f0a9-69d2-43e6-83b6-5c7136f0e03c.png" 

@@ -14,8 +14,8 @@ const Navigation = () => {
   return <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'glass-nav py-2' : 'bg-transparent py-4'} animate-slide-down`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Primary Logo - Center */}
-          <div className="absolute left-1/2 transform -translate-x-1/2">
+          {/* Primary Logo - Center - Moved down to prevent cut-off */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-2 md:top-1">
             <Link to="/" className="block hover-glow">
               <img src="/lovable-uploads/82fae56d-d6d7-4852-a667-9865548a6af5.png" alt="Summit Seekers" className="w-16 h-16 md:w-20 md:h-20 rounded-full neon-glow transition-all duration-300" />
             </Link>

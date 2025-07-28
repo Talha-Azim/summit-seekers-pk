@@ -1,18 +1,22 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
-import GallerySection from '@/components/GallerySection';
+import EnhancedGallerySection from '@/components/EnhancedGallerySection';
 import JourneySection from '@/components/JourneySection';
-import AboutSection from '@/components/AboutSection';
+import GoalsAchievedSection from '@/components/GoalsAchievedSection';
+import InstagramPosts from '@/components/InstagramPosts';
 import InstagramSection from '@/components/InstagramSection';
+import AstronomyBackground from '@/components/AstronomyBackground';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background page-transition">
+      <AstronomyBackground />
       <Navigation />
       <HeroSection />
-      <GallerySection />
+      <EnhancedGallerySection />
       <JourneySection />
-      <AboutSection />
+      <GoalsAchievedSection />
+      <InstagramPosts />
       <InstagramSection />
     </div>
   );

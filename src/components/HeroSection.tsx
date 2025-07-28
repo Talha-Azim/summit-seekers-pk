@@ -42,11 +42,11 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Floating Emojis */}
+        {/* Futuristic geometric animation */}
         <div className="mb-8 flex justify-center space-x-8">
-          <span className="text-6xl animate-float" style={{ animationDelay: '0s' }}>🏔️</span>
-          <span className="text-6xl animate-float" style={{ animationDelay: '0.5s' }}>⭐</span>
-          <span className="text-6xl animate-float" style={{ animationDelay: '1s' }}>🔥</span>
+          <div className="w-16 h-16 border-2 border-primary rounded-lg animate-float neon-glow" style={{ animationDelay: '0s', transform: 'rotate(45deg)' }}></div>
+          <div className="w-12 h-12 border-2 border-accent rounded-full animate-float neon-glow" style={{ animationDelay: '0.5s' }}></div>
+          <div className="w-14 h-14 border-2 border-primary rounded-lg animate-float neon-glow" style={{ animationDelay: '1s', clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
         </div>
 
         {/* Hero Title with Typing Effect */}
@@ -59,7 +59,7 @@ const HeroSection = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-muted mb-8 animate-slide-up max-w-2xl mx-auto" style={{ animationDelay: '0.5s' }}>
+        <p className="text-xl md:text-2xl text-paragraph mb-8 animate-slide-up max-w-2xl mx-auto" style={{ animationDelay: '0.5s' }}>
           Conquering peaks, capturing memories, and seeking the extraordinary in every ascent
         </p>
 
@@ -67,7 +67,7 @@ const HeroSection = () => {
         <div className="animate-slide-up" style={{ animationDelay: '1s' }}>
           <Button 
             size="lg"
-            className="px-8 py-4 text-lg font-semibold bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground neon-glow hover-scale animate-neon-pulse ripple"
+            className="px-8 py-4 text-lg font-semibold bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground neon-glow hover-scale animate-neon-pulse btn-simple"
             onClick={() => {
               document.getElementById('gallery')?.scrollIntoView({ 
                 behavior: 'smooth' 
