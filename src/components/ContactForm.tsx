@@ -19,24 +19,19 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       // Create mailto link with form data
       const subject = encodeURIComponent(formData.subject || 'Contact from Summit Seekers Website');
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      );
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
       const mailtoLink = `mailto:summit.seeker.pk@gmail.com?subject=${subject}&body=${body}`;
-      
+
       // Open email client
       window.location.href = mailtoLink;
-      
       toast({
         title: "Email Client Opened!",
         description: "Your default email app should open with the message pre-filled.",
         duration: 5000
       });
-      
       setFormData({
         name: '',
         email: '',
@@ -66,7 +61,7 @@ const ContactForm = () => {
           <h1 className="heading-primary text-4xl md:text-6xl neon-text mb-4">
             Summit Command
           </h1>
-          <p className="text-xl text-muted max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-[#00ffff] text-lg text-center">
             Ready to embark on your next adventure? Reach out and let's plan something extraordinary together.
           </p>
         </div>
@@ -110,10 +105,7 @@ const ContactForm = () => {
               <div className="border-t border-primary/20 pt-8">
                 <h3 className="text-lg font-semibold mb-4 text-foreground">Follow Our Adventures</h3>
                 <div className="flex space-x-4">
-                  <button 
-                    className="p-3 bg-primary/10 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300 hover-scale neon-glow"
-                    onClick={() => window.open('https://www.instagram.com/summit.seekers.pk/profilecard/?igsh=MW43bWsxNnh5cWNjaA==', '_blank')}
-                  >
+                  <button className="p-3 bg-primary/10 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300 hover-scale neon-glow" onClick={() => window.open('https://www.instagram.com/summit.seekers.pk/profilecard/?igsh=MW43bWsxNnh5cWNjaA==', '_blank')}>
                     <Instagram className="w-5 h-5 text-primary" />
                   </button>
                   
@@ -123,7 +115,7 @@ const ContactForm = () => {
 
               {/* QR Code */}
               <div className="mt-8 pt-8 border-t border-primary/20 text-center">
-                <p className="text-sm text-muted mb-4">Quick Connect</p>
+                <p className="text-sm mb-4 text-[#00ffff]">Quick Connect</p>
                 <div className="w-32 h-32 mx-auto border-2 border-primary/30 rounded-lg flex items-center justify-center bg-bg-dark hover-glow">
                   <img src="/lovable-uploads/e2c2f0a9-69d2-43e6-83b6-5c7136f0e03c.png" alt="QR Code" className="w-24 h-24 rounded" />
                 </div>
