@@ -70,25 +70,60 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-20px)' }
+				},
+				'neon-pulse': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan))' 
 					},
-					to: {
-						height: '0'
+					'50%': { 
+						boxShadow: '0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan))' 
+					}
+				},
+				'slide-down': {
+					'from': { transform: 'translateY(-100%)', opacity: '0' },
+					'to': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'slide-up': {
+					'from': { transform: 'translateY(30px)', opacity: '0' },
+					'to': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'fade-in': {
+					'from': { opacity: '0' },
+					'to': { opacity: '1' }
+				},
+				'typing': {
+					'from': { width: '0' },
+					'to': { width: '100%' }
+				},
+				'glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 20px hsl(var(--neon-cyan) / 0.3)' 
+					},
+					'50%': { 
+						boxShadow: '0 0 30px hsl(var(--neon-cyan)), 0 0 60px hsl(var(--neon-cyan) / 0.4)' 
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'neon-pulse': 'neon-pulse 2s infinite alternate',
+				'slide-down': 'slide-down 0.5s ease',
+				'slide-up': 'slide-up 0.6s ease',
+				'fade-in': 'fade-in 0.6s ease',
+				'typing': 'typing 3s steps(20, end)',
+				'glow': 'glow 2s ease-in-out infinite'
 			}
 		}
 	},

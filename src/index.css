@@ -1,42 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Summit Seekers Design System - Dark Futuristic Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    /* Dark Theme Base Colors (HSL) */
+    --bg-dark: 220 50% 5%;           /* Deep midnight blue-black */
+    --bg-secondary: 220 45% 10%;     /* Lighter dark blue */
+    --bg-card: 220 40% 15%;          /* Dark slate for cards */
+    
+    /* Text Colors */
+    --text-light: 210 30% 95%;       /* Soft white */
+    --text-muted: 200 60% 70%;       /* Muted cyan */
+    
+    /* Neon Accent Colors */
+    --neon-cyan: 180 100% 50%;       /* Primary neon cyan */
+    --neon-blue: 200 100% 40%;       /* Buttons, highlights */
+    --electric-blue: 190 100% 50%;   /* Futuristic flair */
+    --neon-purple: 300 100% 50%;     /* Modern accent */
+    
+    /* Glassmorphism */
+    --glass-bg: 220 40% 15% / 0.1;
+    --glass-border: 180 100% 50% / 0.15;
+    
+    /* Design System Colors */
+    --background: var(--bg-dark);
+    --foreground: var(--text-light);
+    --card: var(--bg-card);
+    --card-foreground: var(--text-light);
+    --popover: var(--bg-card);
+    --popover-foreground: var(--text-light);
+    --primary: var(--neon-cyan);
+    --primary-foreground: var(--bg-dark);
+    --secondary: var(--bg-secondary);
+    --secondary-foreground: var(--text-light);
+    --muted: var(--bg-secondary);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--electric-blue);
+    --accent-foreground: var(--bg-dark);
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --destructive-foreground: var(--text-light);
+    --border: var(--glass-border);
+    --input: var(--bg-secondary);
+    --ring: var(--neon-cyan);
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--bg-dark)), hsl(var(--bg-secondary)));
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--electric-blue)));
+    --gradient-glass: linear-gradient(135deg, hsl(var(--glass-bg)), hsl(var(--bg-card) / 0.2));
+    
+    /* Shadows and Glows */
+    --shadow-neon: 0 0 20px hsl(var(--neon-cyan) / 0.3);
+    --shadow-glass: 0 8px 32px hsl(var(--bg-dark) / 0.3);
+    --glow-intense: 0 0 30px hsl(var(--neon-cyan)), 0 0 60px hsl(var(--neon-cyan) / 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: box-shadow 0.3s ease, transform 0.3s ease;
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +119,227 @@ All colors MUST be HSL.
   }
 }
 
+/* Custom Animations and Keyframes */
 @layer base {
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes neonPulse {
+    0%, 100% { 
+      box-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan)), 0 0 15px hsl(var(--neon-cyan));
+    }
+    50% { 
+      box-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan));
+    }
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    0%, 50% { border-color: hsl(var(--neon-cyan)); }
+    51%, 100% { border-color: transparent; }
+  }
+
+  @keyframes ripple {
+    0% { 
+      transform: scale(0); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: scale(4); 
+      opacity: 0; 
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+
+  @keyframes floatAround {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+  }
+
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-['Roboto'];
+    overflow-x: hidden;
+  }
+
+  /* Typography Classes */
+  .heading-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan));
+  }
+
+  .heading-secondary {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* Glass Effect Classes */
+  .glass-card {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-nav {
+    background: hsl(var(--bg-dark) / 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid hsl(var(--glass-border));
+  }
+
+  /* Neon Effects */
+  .neon-glow {
+    box-shadow: var(--shadow-neon);
+    transition: var(--transition-glow);
+  }
+
+  .neon-glow:hover {
+    box-shadow: var(--glow-intense);
+    transform: translateY(-2px);
+  }
+
+  .neon-border {
+    border: 1px solid hsl(var(--neon-cyan));
+    box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  .neon-text {
+    color: hsl(var(--neon-cyan));
+    text-shadow: 0 0 10px hsl(var(--neon-cyan));
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-neon-pulse {
+    animation: neonPulse 2s infinite alternate;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.5s ease;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease;
+  }
+
+  .animate-typing {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--neon-cyan));
+    white-space: nowrap;
+    animation: typing 3s steps(20, end), blink 1s infinite;
+  }
+
+  /* Hover Effects */
+  .hover-scale {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+    transition: transform 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--glow-intense);
+    transform: translateY(-5px);
+    transition: var(--transition-glow);
+  }
+
+  /* Ripple Effect */
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--neon-cyan)) 0%, hsl(var(--neon-purple)) 100%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: 0;
+  }
+
+  .ripple:active::after {
+    width: 300px;
+    height: 300px;
+    animation: ripple 0.6s ease-out;
+  }
+
+  /* Floating Particles Background */
+  .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: hsl(var(--neon-cyan));
+    border-radius: 50%;
+    animation: floatAround 20s linear infinite;
+    opacity: 0.6;
+    box-shadow: 0 0 6px hsl(var(--neon-cyan));
+  }
+
+  /* Parallax Effect */
+  .parallax {
+    transition: transform 0.1s linear;
   }
 }
