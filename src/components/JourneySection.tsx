@@ -72,7 +72,7 @@ const JourneySection = () => {
                     <h3 className="heading-secondary text-2xl md:text-3xl neon-text mb-6">
                       {card.title}
                     </h3>
-                    <p className="leading-relaxed text-[#00ffff] text-justify font-extralight text-base">
+                    <p className="leading-relaxed text-[#00ffff] font-extralight text-base text-left">
                       {card.content}
                     </p>
                   </div>
