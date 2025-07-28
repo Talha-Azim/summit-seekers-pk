@@ -1,6 +1,5 @@
 const AboutSection = () => {
-  return (
-    <section className="py-20 px-4">
+  return <section className="py-20 px-4">
       <div className="container mx-auto max-w-4xl">
         {/* Section Title */}
         <div className="text-center mb-16 animate-fade-in">
@@ -40,7 +39,7 @@ const AboutSection = () => {
           {/* Stats or Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-primary/20">
             <div className="text-center">
-              <div className="text-3xl font-bold neon-text mb-2">50+</div>
+              <div className="text-3xl font-bold neon-text mb-2">10+</div>
               <div className="text-muted">Peaks Conquered</div>
             </div>
             <div className="text-center">
@@ -54,8 +53,6 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
