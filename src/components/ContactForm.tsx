@@ -72,7 +72,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     
-                    <div className="text-foreground">adventures@summitseekers.com</div>
+                    <div className="text-foreground">summit.seeker.pk@gmail.com</div>
                   </div>
                 </div>
 
