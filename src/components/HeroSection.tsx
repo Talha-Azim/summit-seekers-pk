@@ -1,103 +1,72 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import hikingBackpack from '@/assets/hiking-backpack.png';
-import hikingStick from '@/assets/hiking-stick.png';
-import hikingBoots from '@/assets/hiking-boots.png';
-
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
   const [typingComplete, setTypingComplete] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   useEffect(() => {
     const timer = setTimeout(() => setTypingComplete(true), 3000);
     return () => clearTimeout(timer);
   }, []);
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Parallax Background */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-br from-bg-dark via-bg-secondary to-bg-dark parallax"
-        style={{ transform: `translateY(${scrollY * -0.5}px)` }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-br from-bg-dark via-bg-secondary to-bg-dark parallax" style={{
+      transform: `translateY(${scrollY * -0.5}px)`
+    }} />
       
       {/* Floating Particles */}
       <div className="particles">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 20}s`,
-              animationDuration: `${15 + Math.random() * 10}s`
-            }}
-          />
-        ))}
+        {Array.from({
+        length: 20
+      }).map((_, i) => <div key={i} className="particle" style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 20}s`,
+        animationDuration: `${15 + Math.random() * 10}s`
+      }} />)}
       </div>
 
       {/* Hero Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Hiking items animation */}
-        <div className="mb-8 flex justify-center items-center space-x-12">
-          <div className="animate-float hover-element" style={{ animationDelay: '0s' }}>
-            <img 
-              src={hikingBackpack} 
-              alt="Hiking Backpack" 
-              className="w-16 h-16 object-contain neon-glow filter drop-shadow-lg"
-              style={{ filter: 'drop-shadow(0 0 10px hsl(var(--neon-cyan)))' }}
-            />
-          </div>
-          <div className="animate-float hover-element" style={{ animationDelay: '0.5s' }}>
-            <img 
-              src={hikingStick} 
-              alt="Hiking Stick" 
-              className="w-12 h-16 object-contain neon-glow filter drop-shadow-lg"
-              style={{ filter: 'drop-shadow(0 0 8px hsl(var(--neon-cyan)))' }}
-            />
-          </div>
-          <div className="animate-float hover-element" style={{ animationDelay: '1s' }}>
-            <img 
-              src={hikingBoots} 
-              alt="Hiking Boots" 
-              className="w-16 h-12 object-contain neon-glow filter drop-shadow-lg"
-              style={{ filter: 'drop-shadow(0 0 10px hsl(var(--neon-cyan)))' }}
-            />
-          </div>
+        {/* Futuristic geometric animation */}
+        <div className="mb-8 flex justify-center space-x-8">
+          <div className="w-16 h-16 border-2 border-primary rounded-lg animate-float neon-glow" style={{
+          animationDelay: '0s',
+          transform: 'rotate(45deg)'
+        }}></div>
+          <div className="w-12 h-12 border-2 border-accent rounded-full animate-float neon-glow" style={{
+          animationDelay: '0.5s'
+        }}></div>
+          
         </div>
 
         {/* Hero Title with Typing Effect */}
         <h1 className="heading-primary text-4xl md:text-6xl lg:text-7xl mb-6 neon-text">
-          <span className={`inline-block overflow-hidden whitespace-nowrap ${
-            !typingComplete ? 'animate-typing' : ''
-          }`}>
+          <span className={`inline-block overflow-hidden whitespace-nowrap ${!typingComplete ? 'animate-typing' : ''}`}>
             SUMMIT SEEKERS
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-paragraph mb-8 animate-slide-up max-w-2xl mx-auto" style={{ animationDelay: '0.5s' }}>
+        <p className="text-xl md:text-2xl text-paragraph mb-8 animate-slide-up max-w-2xl mx-auto" style={{
+        animationDelay: '0.5s'
+      }}>
           Conquering peaks, capturing memories, and seeking the extraordinary in every ascent
         </p>
 
         {/* CTA Button */}
-        <div className="animate-slide-up" style={{ animationDelay: '1s' }}>
-          <Button 
-            size="lg"
-            className="px-8 py-4 text-lg font-semibold bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground neon-glow hover-scale animate-neon-pulse btn-simple"
-            onClick={() => {
-              document.getElementById('gallery')?.scrollIntoView({ 
-                behavior: 'smooth' 
-              });
-            }}
-          >
+        <div className="animate-slide-up" style={{
+        animationDelay: '1s'
+      }}>
+          <Button size="lg" className="px-8 py-4 text-lg font-semibold bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground neon-glow hover-scale animate-neon-pulse btn-simple" onClick={() => {
+          document.getElementById('gallery')?.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }}>
             Begin the Ascent
           </Button>
         </div>
@@ -111,15 +80,9 @@ const HeroSection = () => {
       </div>
 
       {/* SVG Mountain Silhouette */}
-      <svg 
-        className="absolute bottom-0 w-full h-32 text-bg-card opacity-50"
-        viewBox="0 0 1200 200"
-        fill="currentColor"
-      >
+      <svg className="absolute bottom-0 w-full h-32 text-bg-card opacity-50" viewBox="0 0 1200 200" fill="currentColor">
         <path d="M0,200 L0,100 L200,50 L400,80 L600,20 L800,60 L1000,30 L1200,70 L1200,200 Z" />
       </svg>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
