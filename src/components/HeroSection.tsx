@@ -34,13 +34,8 @@ const HeroSection = () => {
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         {/* Futuristic geometric animation */}
         <div className="mb-8 flex justify-center space-x-8">
-          <div className="w-16 h-16 border-2 border-primary rounded-lg animate-float neon-glow" style={{
-          animationDelay: '0s',
-          transform: 'rotate(45deg)'
-        }}></div>
-          <div className="w-12 h-12 border-2 border-accent rounded-full animate-float neon-glow" style={{
-          animationDelay: '0.5s'
-        }}></div>
+          
+          
           
         </div>
 
