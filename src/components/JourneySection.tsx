@@ -16,6 +16,8 @@ const journeyCards = [{
 const JourneySection = () => {
   const [currentCard, setCurrentCard] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!isAutoScrolling) return;
@@ -38,6 +40,28 @@ const JourneySection = () => {
     setCurrentCard(index);
     setIsAutoScrolling(false);
     setTimeout(() => setIsAutoScrolling(true), 10000);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextCard();
+    } else if (isRightSwipe) {
+      prevCard();
+    }
   };
   return <section className="py-20 px-4 bg-bg-secondary">
       <div className="container mx-auto max-w-6xl">
@@ -63,7 +87,15 @@ const JourneySection = () => {
           </button>
 
           {/* Cards Container */}
-          <div ref={carouselRef} className="overflow-hidden rounded-lg" onMouseEnter={() => setIsAutoScrolling(false)} onMouseLeave={() => setIsAutoScrolling(true)}>
+          <div 
+            ref={carouselRef} 
+            className="overflow-hidden rounded-lg" 
+            onMouseEnter={() => setIsAutoScrolling(false)} 
+            onMouseLeave={() => setIsAutoScrolling(true)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className="flex transition-transform duration-500 ease-in-out" style={{
             transform: `translateX(-${currentCard * 100}%)`
           }}>
@@ -95,7 +127,7 @@ const JourneySection = () => {
 
         {/* Mobile Swipe Indicator */}
         <div className="md:hidden text-center mt-6 text-muted text-sm">
-          Swipe to explore our journey
+          Swipe left or right to explore our journey
         </div>
       </div>
     </section>;

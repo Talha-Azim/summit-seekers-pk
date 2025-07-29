@@ -185,6 +185,39 @@
     100% { transform: translate(0, 0) rotate(360deg); }
   }
 
+  @keyframes titleGlow {
+    0% { text-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan)); }
+    100% { text-shadow: 0 0 8px hsl(var(--neon-cyan)), 0 0 15px hsl(var(--neon-cyan)); }
+  }
+
+  @keyframes subtleGlow {
+    0% { text-shadow: 0 0 3px hsl(var(--neon-cyan)), 0 0 6px hsl(var(--neon-cyan)); }
+    100% { text-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan)); }
+  }
+
+  @keyframes gentleGlow {
+    0% { text-shadow: 0 0 3px hsl(var(--neon-cyan)), 0 0 6px hsl(var(--neon-cyan)); }
+    100% { text-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 8px hsl(var(--neon-cyan)); }
+  }
+
+  @keyframes shootingStar {
+    0% { transform: translateX(-100px) translateY(100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100vw) translateY(-100px); opacity: 0; }
+  }
+
+  @keyframes cityLights {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes pageSlideIn {
+    0% { transform: scale(0) rotate(45deg); opacity: 0; }
+    50% { transform: scale(1.1) rotate(22.5deg); opacity: 0.8; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
   * {
     @apply border-border;
   }
@@ -194,13 +227,14 @@
     overflow-x: hidden;
   }
 
-  /* Typography Classes */
+  /* Typography Classes - Reduced Glow */
   .heading-primary {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     text-transform: uppercase;
     color: hsl(var(--text-primary));
-    text-shadow: 0 0 15px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan)), 0 0 45px hsl(var(--neon-cyan));
+    text-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan));
+    animation: titleGlow 2s ease-in-out infinite alternate;
   }
 
   .heading-secondary {
@@ -208,7 +242,8 @@
     font-weight: 700;
     text-transform: uppercase;
     color: hsl(var(--text-primary));
-    text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan));
+    text-shadow: 0 0 3px hsl(var(--neon-cyan)), 0 0 6px hsl(var(--neon-cyan));
+    animation: subtleGlow 3s ease-in-out infinite alternate;
   }
 
   .text-paragraph {
@@ -248,7 +283,8 @@
 
   .neon-text {
     color: hsl(var(--neon-cyan));
-    text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan));
+    text-shadow: 0 0 3px hsl(var(--neon-cyan)), 0 0 6px hsl(var(--neon-cyan));
+    animation: gentleGlow 2.5s ease-in-out infinite alternate;
   }
 
   .text-glow-subtle {
@@ -284,13 +320,42 @@
     animation: typing 3s steps(20, end), blink 1s infinite;
   }
 
-  /* Hover Effects */
+  /* Hover Effects - Fixed Glitchy Borders */
   .hover-scale {
     transition: var(--transition-smooth);
+    border-radius: 0.5rem; /* Consistent border radius */
   }
 
   .hover-scale:hover {
     transform: scale(1.05);
+  }
+
+  /* Consistent hover states */
+  .hover-element {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+
+  .hover-element:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px hsl(var(--neon-cyan) / 0.4);
+  }
+
+  .hover-element:hover::before {
+    opacity: 1;
+  }
+
+  .hover-element::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, hsl(var(--neon-cyan) / 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 
   .hover-tilt:hover {
@@ -323,6 +388,10 @@
 
   /* Page Transitions */
   .page-transition {
+    animation: pageSlideIn 0.8s ease-out;
+  }
+
+  .page-transition-enter {
     animation: pageEnter 0.8s ease-out;
   }
 

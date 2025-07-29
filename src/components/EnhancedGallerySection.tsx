@@ -48,16 +48,17 @@ const conquests: Conquest[] = [
 
 const EnhancedGallerySection = () => {
   const [rotation, setRotation] = useState(0);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [isUserControlling, setIsUserControlling] = useState(false);
+  const [clickedCard, setClickedCard] = useState<number | null>(null);
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; opacity: number }>>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     const animate = () => {
-      if (!isUserControlling && hoveredCard === null) {
-        setRotation(prev => prev + 0.5);
+      if (isAutoRotating && clickedCard === null) {
+        setRotation(prev => prev + 0.3);
       }
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -67,24 +68,32 @@ const EnhancedGallerySection = () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
-  }, [isUserControlling, hoveredCard]);
+  }, [isAutoRotating, clickedCard]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (containerRef.current && hoveredCard === null) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const mouseX = e.clientX - centerX;
-      const mouseY = e.clientY - centerY;
-      const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
-      setRotation(angle);
-      setIsUserControlling(true);
+  const handleCardClick = (cardId: number) => {
+    if (clickedCard === cardId) {
+      // Close card if same card clicked
+      setClickedCard(null);
+      setIsAutoRotating(true);
+    } else {
+      // Open new card and stop rotation
+      setClickedCard(cardId);
+      setIsAutoRotating(false);
+      createParticleEffect(cardId);
+      
+      // Auto-resume after 5 seconds
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setClickedCard(null);
+        setIsAutoRotating(true);
+      }, 5000);
     }
-  };
-
-  const handleMouseLeave = () => {
-    setIsUserControlling(false);
   };
 
   const createParticleEffect = (cardId: number) => {
@@ -102,14 +111,9 @@ const EnhancedGallerySection = () => {
     }, 1000);
   };
 
-  const handleCardHover = (cardId: number) => {
-    setHoveredCard(cardId);
-    createParticleEffect(cardId);
-  };
-
   const getCardPosition = (index: number) => {
     const angle = (rotation + (index * 60)) * (Math.PI / 180);
-    const radius = 180;
+    const radius = window.innerWidth < 768 ? 140 : 180; // Smaller radius on mobile
     const x = Math.cos(angle) * radius;
     const y = Math.sin(angle) * radius;
     return { x, y, angle: rotation + (index * 60) };
@@ -131,9 +135,7 @@ const EnhancedGallerySection = () => {
         {/* Circular Gallery */}
         <div 
           ref={containerRef}
-          className="relative w-full h-[600px] flex items-center justify-center"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+          className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center"
         >
           {/* Particle Effects */}
           {particles.map((particle) => (
@@ -153,27 +155,26 @@ const EnhancedGallerySection = () => {
 
           {conquests.map((conquest, index) => {
             const position = getCardPosition(index);
-            const isHovered = hoveredCard === conquest.id;
+            const isClicked = clickedCard === conquest.id;
 
             return (
               <div
                 key={conquest.id}
-                className={`absolute w-64 h-80 transition-all duration-500 cursor-pointer group ${
-                  isHovered ? 'z-20' : 'z-10'
-                }`}
+                className={`absolute transition-all duration-500 cursor-pointer group hover-element ${
+                  isClicked ? 'z-20' : 'z-10'
+                } w-48 h-60 md:w-64 md:h-80`}
                 style={{
                   transform: `translate(${position.x}px, ${position.y}px) ${
-                    isHovered ? 'scale(1.1) rotateY(180deg)' : 'scale(1)'
+                    isClicked ? 'scale(1.2) rotateY(180deg)' : 'scale(1)'
                   }`,
                   transformStyle: 'preserve-3d'
                 }}
-                onMouseEnter={() => handleCardHover(conquest.id)}
-                onMouseLeave={() => setHoveredCard(null)}
+                onClick={() => handleCardClick(conquest.id)}
               >
                 {/* Card Front */}
                 <div 
                   className={`absolute inset-0 glass-card rounded-lg overflow-hidden backface-hidden ${
-                    isHovered ? 'opacity-0' : 'opacity-100'
+                    isClicked ? 'opacity-0' : 'opacity-100'
                   } transition-opacity duration-300`}
                   style={{ backfaceVisibility: 'hidden' }}
                 >
@@ -192,16 +193,16 @@ const EnhancedGallerySection = () => {
 
                 {/* Card Back */}
                 <div 
-                  className={`absolute inset-0 glass-card rounded-lg p-6 flex flex-col justify-center ${
-                    isHovered ? 'opacity-100' : 'opacity-0'
+                  className={`absolute inset-0 glass-card rounded-lg p-4 md:p-6 flex flex-col justify-center ${
+                    isClicked ? 'opacity-100' : 'opacity-0'
                   } transition-opacity duration-300`}
                   style={{ 
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)'
                   }}
                 >
-                  <h3 className="heading-secondary text-xl neon-text mb-4">{conquest.title}</h3>
-                  <p className="text-glow-subtle text-sm leading-relaxed">{conquest.description}</p>
+                  <h3 className="heading-secondary text-lg md:text-xl neon-text mb-3 md:mb-4">{conquest.title}</h3>
+                  <p className="text-glow-subtle text-xs md:text-sm leading-relaxed">{conquest.description}</p>
                 </div>
               </div>
             );
@@ -214,7 +215,7 @@ const EnhancedGallerySection = () => {
         {/* Instructions */}
         <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.5s' }}>
           <p className="text-glow-subtle">
-            Move your cursor to control rotation • Hover over cards to explore details
+            Click on cards to explore details • Auto-rotation resumes after 5 seconds
           </p>
         </div>
       </div>

@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import hikingBackpack from '@/assets/hiking-backpack.png';
+import hikingStick from '@/assets/hiking-stick.png';
+import hikingBoots from '@/assets/hiking-boots.png';
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -42,11 +45,32 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Futuristic geometric animation */}
-        <div className="mb-8 flex justify-center space-x-8">
-          <div className="w-16 h-16 border-2 border-primary rounded-lg animate-float neon-glow" style={{ animationDelay: '0s', transform: 'rotate(45deg)' }}></div>
-          <div className="w-12 h-12 border-2 border-accent rounded-full animate-float neon-glow" style={{ animationDelay: '0.5s' }}></div>
-          <div className="w-14 h-14 border-2 border-primary rounded-lg animate-float neon-glow" style={{ animationDelay: '1s', clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
+        {/* Hiking items animation */}
+        <div className="mb-8 flex justify-center items-center space-x-12">
+          <div className="animate-float hover-element" style={{ animationDelay: '0s' }}>
+            <img 
+              src={hikingBackpack} 
+              alt="Hiking Backpack" 
+              className="w-16 h-16 object-contain neon-glow filter drop-shadow-lg"
+              style={{ filter: 'drop-shadow(0 0 10px hsl(var(--neon-cyan)))' }}
+            />
+          </div>
+          <div className="animate-float hover-element" style={{ animationDelay: '0.5s' }}>
+            <img 
+              src={hikingStick} 
+              alt="Hiking Stick" 
+              className="w-12 h-16 object-contain neon-glow filter drop-shadow-lg"
+              style={{ filter: 'drop-shadow(0 0 8px hsl(var(--neon-cyan)))' }}
+            />
+          </div>
+          <div className="animate-float hover-element" style={{ animationDelay: '1s' }}>
+            <img 
+              src={hikingBoots} 
+              alt="Hiking Boots" 
+              className="w-16 h-12 object-contain neon-glow filter drop-shadow-lg"
+              style={{ filter: 'drop-shadow(0 0 10px hsl(var(--neon-cyan)))' }}
+            />
+          </div>
         </div>
 
         {/* Hero Title with Typing Effect */}
