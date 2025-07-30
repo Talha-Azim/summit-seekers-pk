@@ -471,7 +471,7 @@
       /* Main space gradient */
       radial-gradient(ellipse at bottom, rgba(27, 27, 58, 0.5) 0%, rgba(10, 10, 26, 0.6) 100%);
     z-index: -2;
-    opacity: 0.5;
+    opacity: 0.4;
     /* Completely decouple from scrolling */
     transform: translateZ(0);
     will-change: transform;
@@ -511,17 +511,86 @@
   }
 
   .star.moving {
-    animation: starMoveIndependent 20s linear infinite, twinkle 3s ease-in-out infinite alternate;
+    animation: starMoveCircular 20s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+    /* Force completely independent animation layer - isolated from scroll */
+    position: absolute;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    contain: layout style paint;
+    /* Create independent animation context completely decoupled from scrolling */
+    isolation: isolate;
+    /* Force GPU compositing layer for mobile performance */
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
   }
 
-  @keyframes starMoveIndependent {
-    0% { transform: rotate(0deg) translateX(200px) rotate(0deg); }
-    100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+  @keyframes starMoveCircular {
+    0% { 
+      transform: translateZ(0) translateX(100px) translateY(0px);
+    }
+    25% { 
+      transform: translateZ(0) translateX(0px) translateY(-100px);
+    }
+    50% { 
+      transform: translateZ(0) translateX(-100px) translateY(0px);
+    }
+    75% { 
+      transform: translateZ(0) translateX(0px) translateY(100px);
+    }
+    100% { 
+      transform: translateZ(0) translateX(100px) translateY(0px);
+    }
+  }
+
+  /* Alternative movement pattern for variety */
+  .star.moving:nth-child(2n) {
+    animation: starMoveFigureEight 25s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+  }
+  
+  .star.moving:nth-child(3n) {
+    animation: starMoveHorizontal 18s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes starMoveFigureEight {
+    0% { 
+      transform: translateZ(0) translateX(80px) translateY(0px);
+    }
+    25% { 
+      transform: translateZ(0) translateX(0px) translateY(-40px);
+    }
+    50% { 
+      transform: translateZ(0) translateX(-80px) translateY(0px);
+    }
+    75% { 
+      transform: translateZ(0) translateX(0px) translateY(40px);
+    }
+    100% { 
+      transform: translateZ(0) translateX(80px) translateY(0px);
+    }
+  }
+
+  @keyframes starMoveHorizontal {
+    0% { 
+      transform: translateZ(0) translateX(-60px) translateY(0px);
+    }
+    50% { 
+      transform: translateZ(0) translateX(60px) translateY(-20px);
+    }
+    100% { 
+      transform: translateZ(0) translateX(-60px) translateY(0px);
+    }
   }
 
   @keyframes twinkle {
-    0% { opacity: 0.3; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.2); }
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+  }
+
+  /* Separate twinkle for moving stars to avoid transform conflicts */
+  @keyframes twinkleMoving {
+    0% { opacity: 0.3; box-shadow: 0 0 4px hsl(var(--neon-cyan)); }
+    100% { opacity: 1; box-shadow: 0 0 8px hsl(var(--neon-cyan)); }
   }
 
   /* Landscape Silhouette */
@@ -567,7 +636,7 @@
     background: hsl(var(--neon-cyan));
     border-radius: 50%;
     animation: floatAround 25s linear infinite;
-    opacity: 0.3;
+    opacity: 0.25;
     box-shadow: 0 0 4px hsl(var(--neon-cyan));
     /* Ensure independent animation */
     transform: translateZ(0);
