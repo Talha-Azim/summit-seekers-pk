@@ -52,8 +52,24 @@ const AstronomyBackground = () => {
 
   return (
     <>
-      {/* Main astronomy background */}
-      <div className="astronomy-bg-enhanced" />
+      {/* Main astronomy background - Mobile Optimized */}
+      <div className="astronomy-bg-enhanced" style={{
+        /* CRITICAL: Fix mobile viewport resize glitches */
+        height: '100vh',
+        minHeight: '100vh',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        zIndex: -2,
+        /* Prevent mobile browser UI resizing from affecting background */
+        willChange: 'auto',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        contain: 'layout style paint',
+        overflow: 'hidden'
+      }} />
       
       {/* Enhanced landscape silhouette */}
       <div className="landscape">
@@ -104,8 +120,24 @@ const AstronomyBackground = () => {
         </svg>
       </div>
 
-      {/* Stars */}
-      <div className="stars">
+      {/* Stars - Mobile Viewport Optimized */}
+      <div className="stars" style={{
+        /* CRITICAL: Stable mobile positioning */
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100vh',
+        minHeight: '100vh',
+        pointerEvents: 'none',
+        zIndex: -1,
+        transform: 'translateZ(0)',
+        willChange: 'auto',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        contain: 'layout style paint',
+        overflow: 'hidden'
+      }}>
         {stars.map((star) => (
           <div
             key={star.id}
@@ -120,18 +152,22 @@ const AstronomyBackground = () => {
         ))}
       </div>
 
-      {/* Shooting stars */}
+      {/* Shooting stars - Mobile Optimized */}
       <div className="shooting-stars" style={{
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100%',
-        height: '100%',
+        height: '100vh',
+        minHeight: '100vh',
         pointerEvents: 'none',
         zIndex: -1,
         transform: 'translateZ(0)',
-        willChange: 'transform',
-        backfaceVisibility: 'hidden'
+        willChange: 'auto',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        contain: 'layout style paint',
+        overflow: 'hidden'
       }}>
         {shootingStars.map((shootingStar) => (
           <div
@@ -151,8 +187,24 @@ const AstronomyBackground = () => {
         ))}
       </div>
 
-      {/* Floating particles */}
-      <div className="particles">
+      {/* Floating particles - Mobile Optimized */}
+      <div className="particles" style={{
+        /* CRITICAL: Fix mobile viewport stability */
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100vh',
+        minHeight: '100vh',
+        pointerEvents: 'none',
+        zIndex: -1,
+        transform: 'translateZ(0)',
+        willChange: 'auto',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        contain: 'layout style paint',
+        overflow: 'hidden'
+      }}>
         {Array.from({ length: 40 }).map((_, i) => (
           <div
             key={i}

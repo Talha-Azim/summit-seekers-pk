@@ -276,13 +276,18 @@
     transform: translateY(-2px);
   }
   
-  /* Enhanced logo glow - Fixed circular hover */
+  /* Enhanced logo glow - COMPLETELY CIRCULAR HOVER - NO SQUARE SHAPE */
   .enhanced-logo-glow {
     border-radius: 50%;
     box-shadow: 
       0 0 20px hsl(var(--neon-cyan) / 0.4),
       0 0 40px hsl(var(--neon-cyan) / 0.2),
       0 0 60px hsl(var(--neon-cyan) / 0.1);
+    /* CRITICAL: Force circular bounds and prevent square outline */
+    outline: none;
+    border: none;
+    background-clip: padding-box;
+    overflow: hidden;
   }
   
   .enhanced-logo-glow:hover {
@@ -292,6 +297,9 @@
       0 0 50px hsl(var(--neon-cyan) / 0.4),
       0 0 70px hsl(var(--neon-cyan) / 0.2);
     transform: translateY(-3px) scale(1.05);
+    /* ENSURE NO SQUARE OUTLINE ON HOVER */
+    outline: none;
+    border: none;
   }
 
   .neon-border {
@@ -342,24 +350,31 @@
   .hover-scale {
     transition: var(--transition-smooth);
     border-radius: 0.5rem;
-    /* Fixed boundary for consistent hover detection */
+    /* Fixed boundary for consistent hover detection - prevent border glitch */
     position: relative;
     z-index: 1;
+    /* Add padding to expand hover area and prevent border flickering */
+    padding: 2px;
+    box-sizing: border-box;
   }
 
   .hover-scale:hover {
     transform: scale(1.05);
   }
 
-  /* Consistent hover states with fixed boundaries */
+  /* Consistent hover states with fixed boundaries - NO BORDER GLITCHES */
   .hover-element {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
     border-radius: 0.5rem;
-    /* Fixed boundary detection - no margin/padding issues */
+    /* CRITICAL: Expand hover area to prevent border flickering */
+    padding: 3px;
+    margin: -3px;
     box-sizing: border-box;
+    /* Force consistent hover detection */
+    outline: 1px solid transparent;
   }
 
   .hover-element:hover {
@@ -374,7 +389,7 @@
   .hover-element::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 3px;
     background: linear-gradient(45deg, transparent, hsl(var(--neon-cyan) / 0.1), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -390,9 +405,13 @@
   .hover-glow {
     transition: var(--transition-glow);
     border-radius: 0.5rem;
-    /* Prevent glitch on borders */
+    /* PREVENT BORDER GLITCH - Expand hover detection area */
     position: relative;
     z-index: 1;
+    padding: 2px;
+    margin: -2px;
+    box-sizing: border-box;
+    outline: 1px solid transparent;
   }
   
   .hover-glow:hover {
@@ -400,16 +419,20 @@
     transform: translateY(-3px);
   }
 
-  /* Fixed Button Effects - No Border Glitches */
+  /* Fixed Button Effects - COMPLETELY ELIMINATE Border Glitches */
   .btn-simple {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
     border-radius: 0.5rem;
-    /* Consistent boundary detection - fixed border handling */
+    /* CRITICAL: Expand click area to prevent border glitches */
     border: 2px solid transparent;
+    padding: 12px 24px;
+    margin: -2px;
     box-sizing: border-box;
     z-index: 1;
+    /* Force consistent hover detection */
+    outline: 1px solid transparent;
   }
 
   .btn-simple:hover {
@@ -458,13 +481,15 @@
     backface-visibility: hidden;
   }
 
-  /* Enhanced Astronomy Background */
+  /* Enhanced Astronomy Background - Mobile Optimized */
   .astronomy-bg-enhanced {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    /* Use 100vh for stable mobile viewport */
+    min-height: 100vh;
     background: 
       /* Milky Way */
       radial-gradient(ellipse 800px 400px at 70% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
@@ -472,10 +497,16 @@
       radial-gradient(ellipse at bottom, rgba(27, 27, 58, 0.5) 0%, rgba(10, 10, 26, 0.6) 100%);
     z-index: -2;
     opacity: 0.4;
-    /* Completely decouple from scrolling */
+    /* Completely decouple from scrolling and fix mobile viewport changes */
     transform: translateZ(0);
-    will-change: transform;
+    will-change: auto;
     backface-visibility: hidden;
+    /* Prevent mobile browser UI resize glitches */
+    contain: layout style paint;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    /* Lock height to prevent resize glitches */
+    overflow: hidden;
   }
 
   .stars {
@@ -483,15 +514,20 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    /* Use stable viewport units for mobile */
+    min-height: 100vh;
     pointer-events: none;
     z-index: -1;
     /* Completely decouple from scroll and optimize for performance */
     transform: translateZ(0);
-    will-change: transform;
+    will-change: auto;
     backface-visibility: hidden;
-    /* Ensure consistent rendering across devices */
+    /* Ensure consistent rendering across devices and prevent mobile glitches */
     contain: layout style paint;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
   }
 
   .star {
@@ -511,7 +547,7 @@
   }
 
   .star.moving {
-    animation: starMoveCircular 20s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+    animation: starMoveCircular 40s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
     /* Force completely independent animation layer - isolated from scroll */
     position: absolute;
     transform: translateZ(0);
@@ -527,58 +563,58 @@
 
   @keyframes starMoveCircular {
     0% { 
-      transform: translateZ(0) translateX(100px) translateY(0px);
+      transform: translateZ(0) translateX(60px) translateY(0px);
     }
     25% { 
-      transform: translateZ(0) translateX(0px) translateY(-100px);
+      transform: translateZ(0) translateX(0px) translateY(-60px);
     }
     50% { 
-      transform: translateZ(0) translateX(-100px) translateY(0px);
+      transform: translateZ(0) translateX(-60px) translateY(0px);
     }
     75% { 
-      transform: translateZ(0) translateX(0px) translateY(100px);
+      transform: translateZ(0) translateX(0px) translateY(60px);
     }
     100% { 
-      transform: translateZ(0) translateX(100px) translateY(0px);
+      transform: translateZ(0) translateX(60px) translateY(0px);
     }
   }
 
-  /* Alternative movement pattern for variety */
+  /* Alternative movement pattern for variety - slower speeds */
   .star.moving:nth-child(2n) {
-    animation: starMoveFigureEight 25s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+    animation: starMoveFigureEight 50s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
   }
   
   .star.moving:nth-child(3n) {
-    animation: starMoveHorizontal 18s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+    animation: starMoveHorizontal 35s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
   }
 
   @keyframes starMoveFigureEight {
     0% { 
-      transform: translateZ(0) translateX(80px) translateY(0px);
+      transform: translateZ(0) translateX(50px) translateY(0px);
     }
     25% { 
-      transform: translateZ(0) translateX(0px) translateY(-40px);
+      transform: translateZ(0) translateX(0px) translateY(-25px);
     }
     50% { 
-      transform: translateZ(0) translateX(-80px) translateY(0px);
+      transform: translateZ(0) translateX(-50px) translateY(0px);
     }
     75% { 
-      transform: translateZ(0) translateX(0px) translateY(40px);
+      transform: translateZ(0) translateX(0px) translateY(25px);
     }
     100% { 
-      transform: translateZ(0) translateX(80px) translateY(0px);
+      transform: translateZ(0) translateX(50px) translateY(0px);
     }
   }
 
   @keyframes starMoveHorizontal {
     0% { 
-      transform: translateZ(0) translateX(-60px) translateY(0px);
+      transform: translateZ(0) translateX(-40px) translateY(0px);
     }
     50% { 
-      transform: translateZ(0) translateX(60px) translateY(-20px);
+      transform: translateZ(0) translateX(40px) translateY(-15px);
     }
     100% { 
-      transform: translateZ(0) translateX(-60px) translateY(0px);
+      transform: translateZ(0) translateX(-40px) translateY(0px);
     }
   }
 
