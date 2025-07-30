@@ -19,37 +19,36 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
     try {
-      // Direct email sending implementation
-      const emailData = {
-        to: 'summit.seeker.pk@gmail.com',
-        subject: formData.subject || 'Contact from Summit Seekers Website',
-        body: `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      };
-
-      // For demonstration, we'll use a fetch call to a hypothetical email service
-      // In a real implementation, you would use a backend service or email API
-      await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailData),
-      });
-
-      // Clear form data on successful submission
+      // Use mailto link to send email
+      const subject = encodeURIComponent(formData.subject || 'Contact from Summit Seekers Website');
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+      const mailtoLink = `mailto:summit.seeker.pk@gmail.com?subject=${subject}&body=${body}`;
+      
+      window.open(mailtoLink, '_blank');
+      
+      // Clear form data and show success message
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: ''
       });
+      
+      toast({
+        title: "Email Client Opened",
+        description: "Your default email client has been opened with the message. Please send the email from there.",
+        duration: 5000,
+      });
+      
     } catch (error) {
-      // Fallback to mailto if direct sending fails
-      const subject = encodeURIComponent(formData.subject || 'Contact from Summit Seekers Website');
-      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      const mailtoLink = `mailto:summit.seeker.pk@gmail.com?subject=${subject}&body=${body}`;
-      window.open(mailtoLink, '_blank');
+      toast({
+        title: "Error",
+        description: "Failed to open email client. Please try again or contact us directly.",
+        variant: "destructive",
+        duration: 5000,
+      });
     } finally {
       setIsSubmitting(false);
     }
