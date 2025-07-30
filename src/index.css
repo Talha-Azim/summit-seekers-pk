@@ -276,8 +276,9 @@
     transform: translateY(-2px);
   }
   
-  /* Enhanced logo glow */
+  /* Enhanced logo glow - Fixed circular hover */
   .enhanced-logo-glow {
+    border-radius: 50%;
     box-shadow: 
       0 0 20px hsl(var(--neon-cyan) / 0.4),
       0 0 40px hsl(var(--neon-cyan) / 0.2),
@@ -285,10 +286,11 @@
   }
   
   .enhanced-logo-glow:hover {
+    border-radius: 50%;
     box-shadow: 
       0 0 30px hsl(var(--neon-cyan) / 0.6),
-      0 0 60px hsl(var(--neon-cyan) / 0.3),
-      0 0 90px hsl(var(--neon-cyan) / 0.15);
+      0 0 50px hsl(var(--neon-cyan) / 0.4),
+      0 0 70px hsl(var(--neon-cyan) / 0.2);
     transform: translateY(-3px) scale(1.05);
   }
 
@@ -340,6 +342,9 @@
   .hover-scale {
     transition: var(--transition-smooth);
     border-radius: 0.5rem;
+    /* Fixed boundary for consistent hover detection */
+    position: relative;
+    z-index: 1;
   }
 
   .hover-scale:hover {
@@ -353,9 +358,8 @@
     transition: all 0.3s ease;
     cursor: pointer;
     border-radius: 0.5rem;
-    /* Fixed boundary detection */
-    margin: 2px;
-    padding: 2px;
+    /* Fixed boundary detection - no margin/padding issues */
+    box-sizing: border-box;
   }
 
   .hover-element:hover {
@@ -370,7 +374,7 @@
   .hover-element::before {
     content: '';
     position: absolute;
-    inset: 2px;
+    inset: 0;
     background: linear-gradient(45deg, transparent, hsl(var(--neon-cyan) / 0.1), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -385,6 +389,10 @@
 
   .hover-glow {
     transition: var(--transition-glow);
+    border-radius: 0.5rem;
+    /* Prevent glitch on borders */
+    position: relative;
+    z-index: 1;
   }
   
   .hover-glow:hover {
@@ -392,14 +400,16 @@
     transform: translateY(-3px);
   }
 
-  /* Fixed Button Effects */
+  /* Fixed Button Effects - No Border Glitches */
   .btn-simple {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
     border-radius: 0.5rem;
-    /* Ensure consistent boundary detection */
+    /* Consistent boundary detection - fixed border handling */
     border: 2px solid transparent;
+    box-sizing: border-box;
+    z-index: 1;
   }
 
   .btn-simple:hover {
@@ -457,25 +467,11 @@
     height: 100%;
     background: 
       /* Milky Way */
-      radial-gradient(ellipse 800px 400px at 70% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-      /* Moon glow */
-      radial-gradient(circle 150px at 80% 15%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 70%),
+      radial-gradient(ellipse 800px 400px at 70% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
       /* Main space gradient */
-      radial-gradient(ellipse at bottom, rgba(27, 27, 58, 0.8) 0%, rgba(10, 10, 26, 0.9) 100%);
+      radial-gradient(ellipse at bottom, rgba(27, 27, 58, 0.7) 0%, rgba(10, 10, 26, 0.8) 100%);
     z-index: -2;
-    opacity: 0.85;
-  }
-  
-  .astronomy-bg-enhanced::before {
-    content: '';
-    position: absolute;
-    top: 10%;
-    right: 15%;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.3) 40%, transparent 70%);
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.3), 0 0 100px rgba(255, 255, 255, 0.1);
+    opacity: 0.75;
   }
 
   .stars {
@@ -486,6 +482,9 @@
     height: 100%;
     pointer-events: none;
     z-index: -1;
+    /* Decouple from scroll */
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
   }
 
   .star {
@@ -496,6 +495,8 @@
     border-radius: 50%;
     animation: twinkle 3s ease-in-out infinite alternate;
     box-shadow: 0 0 6px hsl(var(--neon-cyan));
+    /* Ensure independent animation */
+    transform: translate3d(0, 0, 0);
   }
 
   .star.moving {

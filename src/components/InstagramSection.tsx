@@ -34,7 +34,8 @@ const InstagramSection = () => {
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <div 
                 key={item} 
-                className="aspect-square bg-gradient-to-br from-bg-card to-bg-dark rounded-lg border border-primary/20 flex items-center justify-center hover:border-primary/50 transition-all duration-300 hover-scale"
+                className="aspect-square bg-gradient-to-br from-bg-card to-bg-dark rounded-lg border border-primary/20 flex items-center justify-center hover:border-primary/50 transition-all duration-300 hover-scale cursor-pointer btn-simple"
+                onClick={() => window.open('https://www.instagram.com/summit.seekers.pk/profilecard/?igsh=MW43bWsxNnh5cWNjaA==', '_blank')}
               >
                 <Instagram className="w-6 h-6 text-primary/60" />
               </div>

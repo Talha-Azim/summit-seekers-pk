@@ -66,25 +66,6 @@ const AstronomyBackground = () => {
           {/* Mountain base */}
           <path d="M0,400 L0,200 L150,100 L300,150 L450,80 L600,120 L750,60 L900,100 L1050,40 L1200,90 L1200,400 Z" />
           
-          {/* Enhanced snow caps on mountains */}
-          <g fill="white" opacity="0.9">
-            <path d="M130,100 L170,100 L150,75 Z" />
-            <path d="M280,150 L320,150 L300,125 Z" />
-            <path d="M430,80 L480,80 L450,55 Z" />
-            <path d="M580,120 L620,120 L600,95 Z" />
-            <path d="M730,60 L770,60 L750,35 Z" />
-            <path d="M880,100 L920,100 L900,75 Z" />
-            <path d="M1030,40 L1070,40 L1050,15 Z" />
-            {/* Additional snow details */}
-            <circle cx="150" cy="82" r="3" opacity="0.7" />
-            <circle cx="300" cy="132" r="2" opacity="0.7" />
-            <circle cx="450" cy="62" r="4" opacity="0.7" />
-            <circle cx="600" cy="102" r="3" opacity="0.7" />
-            <circle cx="750" cy="42" r="4" opacity="0.7" />
-            <circle cx="900" cy="82" r="2" opacity="0.7" />
-            <circle cx="1050" cy="22" r="3" opacity="0.7" />
-          </g>
-          
           {/* Trees silhouette */}
           <g opacity="0.6">
             <path d="M100,200 L100,170 L110,150 L90,150 Z" />
@@ -109,23 +90,6 @@ const AstronomyBackground = () => {
           {/* Lake reflection */}
           <ellipse cx="600" cy="350" rx="400" ry="30" opacity="0.3" />
         </svg>
-      </div>
-
-      {/* City lights */}
-      <div className="city-lights">
-        {cityLights.map((light) => (
-          <div
-            key={light.id}
-            className="absolute w-1 h-1 bg-yellow-400 rounded-full"
-            style={{
-              left: light.left,
-              bottom: light.bottom,
-              animation: `cityLights 2s ease-in-out infinite`,
-              animationDelay: light.delay,
-              boxShadow: '0 0 3px #ffff00',
-            }}
-          />
-        ))}
       </div>
 
       {/* Stars */}

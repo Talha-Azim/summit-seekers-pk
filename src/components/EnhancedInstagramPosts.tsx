@@ -123,7 +123,7 @@ const EnhancedInstagramPosts = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-bg-secondary">
+    <section className="enhanced-instagram-posts py-20 px-4 bg-bg-secondary">
       <div className="container mx-auto max-w-7xl">
         {/* Section Title */}
         <div className="text-center mb-16 animate-fade-in">

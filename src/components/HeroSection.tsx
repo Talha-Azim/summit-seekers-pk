@@ -58,7 +58,7 @@ const HeroSection = () => {
         animationDelay: '1s'
       }}>
           <Button size="lg" className="px-8 py-4 text-lg font-semibold bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground neon-glow hover-scale animate-neon-pulse btn-simple" onClick={() => {
-          document.getElementById('gallery')?.scrollIntoView({
+          document.querySelector('.enhanced-instagram-posts')?.scrollIntoView({
             behavior: 'smooth'
           });
         }}>
