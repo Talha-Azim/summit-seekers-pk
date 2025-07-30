@@ -16,8 +16,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Primary Logo - Center - Moved down to prevent cut-off */}
           <div className="absolute left-1/2 transform -translate-x-1/2 top-2 md:top-1">
-            <Link to="/" className="block hover-glow">
-              <img src="/lovable-uploads/82fae56d-d6d7-4852-a667-9865548a6af5.png" alt="Summit Seekers" className="w-20 h-20 md:w-24 md:h-24 rounded-full neon-glow enhanced-logo-glow transition-all duration-300" />
+            <Link to="/" className="block rounded-full outline-none border-none focus:outline-none focus:ring-0">
+              <img src="/lovable-uploads/82fae56d-d6d7-4852-a667-9865548a6af5.png" alt="Summit Seekers" className="w-20 h-20 md:w-24 md:h-24 rounded-full neon-glow enhanced-logo-glow transition-all duration-300 outline-none border-none" />
             </Link>
           </div>
 

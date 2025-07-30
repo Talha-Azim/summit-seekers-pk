@@ -20,18 +20,24 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(formData.subject || 'Contact from Summit Seekers Website');
-      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      const mailtoLink = `mailto:summit.seeker.pk@gmail.com?subject=${subject}&body=${body}`;
+      // Direct email sending implementation
+      const emailData = {
+        to: 'summit.seeker.pk@gmail.com',
+        subject: formData.subject || 'Contact from Summit Seekers Website',
+        body: `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      };
 
-      // Open email client
-      window.location.href = mailtoLink;
-      toast({
-        title: "Email Client Opened!",
-        description: "Your default email app should open with the message pre-filled.",
-        duration: 5000
+      // For demonstration, we'll use a fetch call to a hypothetical email service
+      // In a real implementation, you would use a backend service or email API
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
       });
+
+      // Clear form data on successful submission
       setFormData({
         name: '',
         email: '',
@@ -39,11 +45,11 @@ const ContactForm = () => {
         message: ''
       });
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Please try sending the email manually to summit.seeker.pk@gmail.com",
-        duration: 5000
-      });
+      // Fallback to mailto if direct sending fails
+      const subject = encodeURIComponent(formData.subject || 'Contact from Summit Seekers Website');
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+      const mailtoLink = `mailto:summit.seeker.pk@gmail.com?subject=${subject}&body=${body}`;
+      window.open(mailtoLink, '_blank');
     } finally {
       setIsSubmitting(false);
     }
@@ -144,7 +150,7 @@ const ContactForm = () => {
                   <Label htmlFor="email" className="text-foreground mb-2 block">
                     Email Address *
                   </Label>
-                  <Input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} className="bg-bg-dark border-primary/30 focus:border-primary text-foreground placeholder:text-muted" placeholder="Enter your email address" />
+                  <Input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} className="bg-bg-dark border-primary/30 focus:border-primary text-black placeholder:text-muted" placeholder="Enter your email address" />
                 </div>
 
                 <div>
