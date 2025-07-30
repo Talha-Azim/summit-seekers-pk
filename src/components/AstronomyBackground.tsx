@@ -58,10 +58,22 @@ const AstronomyBackground = () => {
       {/* Enhanced landscape silhouette */}
       <div className="landscape">
         <svg 
-          className="absolute bottom-0 w-full h-full text-primary opacity-30"
+          className="absolute bottom-0 w-full h-full text-primary opacity-20"
           viewBox="0 0 1200 400"
           fill="currentColor"
           preserveAspectRatio="none"
+          style={{
+            /* Fix mobile rendering and prevent glitches */
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            /* Prevent mobile viewport shifts */
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            height: '100%'
+          }}
         >
           {/* Mountain base */}
           <path d="M0,400 L0,200 L150,100 L300,150 L450,80 L600,120 L750,60 L900,100 L1050,40 L1200,90 L1200,400 Z" />
@@ -109,7 +121,18 @@ const AstronomyBackground = () => {
       </div>
 
       {/* Shooting stars */}
-      <div className="shooting-stars">
+      <div className="shooting-stars" style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: -1,
+        transform: 'translateZ(0)',
+        willChange: 'transform',
+        backfaceVisibility: 'hidden'
+      }}>
         {shootingStars.map((shootingStar) => (
           <div
             key={shootingStar.id}
@@ -120,6 +143,9 @@ const AstronomyBackground = () => {
               animation: `shootingStar 3s linear infinite`,
               animationDelay: shootingStar.delay,
               boxShadow: '0 0 6px white, 2px 0 8px white',
+              transform: 'translateZ(0)',
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden'
             }}
           />
         ))}

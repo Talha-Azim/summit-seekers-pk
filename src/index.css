@@ -467,11 +467,15 @@
     height: 100%;
     background: 
       /* Milky Way */
-      radial-gradient(ellipse 800px 400px at 70% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 800px 400px at 70% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
       /* Main space gradient */
-      radial-gradient(ellipse at bottom, rgba(27, 27, 58, 0.7) 0%, rgba(10, 10, 26, 0.8) 100%);
+      radial-gradient(ellipse at bottom, rgba(27, 27, 58, 0.5) 0%, rgba(10, 10, 26, 0.6) 100%);
     z-index: -2;
-    opacity: 0.75;
+    opacity: 0.5;
+    /* Completely decouple from scrolling */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   .stars {
@@ -482,9 +486,12 @@
     height: 100%;
     pointer-events: none;
     z-index: -1;
-    /* Decouple from scroll */
-    transform: translate3d(0, 0, 0);
-    will-change: auto;
+    /* Completely decouple from scroll and optimize for performance */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    /* Ensure consistent rendering across devices */
+    contain: layout style paint;
   }
 
   .star {
@@ -495,8 +502,12 @@
     border-radius: 50%;
     animation: twinkle 3s ease-in-out infinite alternate;
     box-shadow: 0 0 6px hsl(var(--neon-cyan));
-    /* Ensure independent animation */
-    transform: translate3d(0, 0, 0);
+    /* Ensure completely independent animation from scroll */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    /* Isolate animation context */
+    contain: layout style paint;
   }
 
   .star.moving {
@@ -520,8 +531,17 @@
     left: 0;
     width: 100%;
     height: 40vh;
-    background: linear-gradient(to top, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+    background: linear-gradient(to top, rgba(0, 255, 255, 0.08) 0%, transparent 50%);
     z-index: -1;
+    /* Fix mobile rendering issues */
+    transform: translateZ(0);
+    will-change: auto;
+    backface-visibility: hidden;
+    /* Prevent mobile glitches */
+    contain: layout style;
+    /* Ensure stable positioning on mobile */
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
   }
 
   /* Floating Particles Background */
@@ -533,6 +553,11 @@
     height: 100%;
     pointer-events: none;
     z-index: -1;
+    /* Decouple from scrolling */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    contain: layout style paint;
   }
 
   .particle {
@@ -542,8 +567,12 @@
     background: hsl(var(--neon-cyan));
     border-radius: 50%;
     animation: floatAround 25s linear infinite;
-    opacity: 0.4;
+    opacity: 0.3;
     box-shadow: 0 0 4px hsl(var(--neon-cyan));
+    /* Ensure independent animation */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 
   /* Parallax Effect */
