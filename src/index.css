@@ -227,13 +227,30 @@
     overflow-x: hidden;
   }
 
-  /* Force black text in all input fields regardless of theme */
-  input[type="email"], 
-  input[type="text"], 
-  input[type="password"], 
-  input[type="number"],
-  textarea {
-    color: #000000 !important;
+  /* Enhanced glassmorphism input styling for contact form */
+  .contact-input {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid hsl(var(--neon-cyan) / 0.2) !important;
+    color: hsl(var(--text-primary)) !important;
+    box-shadow: 
+      0 0 10px hsl(var(--neon-cyan) / 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .contact-input:focus {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: hsl(var(--neon-cyan) / 0.4) !important;
+    box-shadow: 
+      0 0 15px hsl(var(--neon-cyan) / 0.3),
+      0 0 25px hsl(var(--neon-cyan) / 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+    outline: none !important;
+  }
+
+  .contact-input::placeholder {
+    color: hsl(var(--text-muted)) !important;
   }
 
   /* Typography Classes - Reduced Glow */
@@ -573,7 +590,7 @@
     /* Force completely independent animation layer - isolated from scroll */
     position: absolute;
     transform: translateZ(0);
-    will-change: transform;
+    will-change: transform, opacity;
     backface-visibility: hidden;
     contain: layout style paint;
     /* Create independent animation context completely decoupled from scrolling */
@@ -581,6 +598,12 @@
     /* Force GPU compositing layer for mobile performance */
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
+    /* CRITICAL: Fix scroll dependency by forcing independent coordinate system */
+    transform-style: preserve-3d;
+    /* Remove any scroll-based transforms */
+    transform-origin: center center;
+    /* Force fixed positioning context */
+    position: fixed;
   }
 
   @keyframes starMoveCircular {
@@ -604,10 +627,18 @@
   /* Alternative movement pattern for variety - slower speeds */
   .star.moving:nth-child(2n) {
     animation: starMoveFigureEight 50s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+    /* Force independent positioning for scroll-agnostic movement */
+    position: fixed;
+    transform-style: preserve-3d;
+    transform-origin: center center;
   }
   
   .star.moving:nth-child(3n) {
     animation: starMoveHorizontal 35s linear infinite, twinkleMoving 3s ease-in-out infinite alternate;
+    /* Force independent positioning for scroll-agnostic movement */
+    position: fixed;
+    transform-style: preserve-3d;
+    transform-origin: center center;
   }
 
   @keyframes starMoveFigureEight {
