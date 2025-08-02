@@ -93,14 +93,6 @@ const ContactForm = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4 group">
-                  <div className="p-3 bg-primary/10 rounded-full border border-primary/30 group-hover:border-primary transition-colors">
-                    <Phone className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-foreground">+92 300 0801341</div>
-                  </div>
-                </div>
 
                 {/* WhatsApp Contact */}
                 <div className="flex items-center space-x-4 group">
@@ -153,7 +145,7 @@ const ContactForm = () => {
               <div className="mt-8 pt-8 border-t border-primary/20 text-center">
                 <p className="text-sm mb-4 text-[#00ffff]">Quick Connect</p>
                 <div className="w-32 h-32 mx-auto border-2 border-primary/30 rounded-lg flex items-center justify-center bg-bg-dark hover-glow">
-                  <img src="/lovable-uploads/e2c2f0a9-69d2-43e6-83b6-5c7136f0e03c.png" alt="QR Code" className="w-24 h-24 rounded" />
+                  <img src="/lovable-uploads/fa10e80a-3ce2-42c5-a74c-4146dac60113.png" alt="TikTok QR Code" className="w-24 h-24 rounded" />
                 </div>
               </div>
             </div>
