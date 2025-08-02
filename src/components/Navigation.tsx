@@ -23,14 +23,14 @@ const Navigation = () => {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className={`text-lg font-medium transition-all duration-300 hover:text-primary hover-glow relative group ${location.pathname === '/' ? 'neon-text' : 'text-foreground'}`}>
+            <Link to="/" className={`text-lg font-medium transition-all duration-300 hover:text-primary relative group ${location.pathname === '/' ? 'neon-text' : 'text-foreground'}`}>
               Home
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/contact" className={`text-lg font-medium transition-all duration-300 hover:text-primary hover-glow relative group ${location.pathname === '/contact' ? 'neon-text' : 'text-foreground'}`}>
+            <Link to="/contact" className={`text-lg font-medium transition-all duration-300 hover:text-primary relative group ${location.pathname === '/contact' ? 'neon-text' : 'text-foreground'}`}>
               Contact
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>

@@ -253,14 +253,13 @@
     color: hsl(var(--text-muted)) !important;
   }
 
-  /* Typography Classes - Reduced Glow */
+  /* Typography Classes - Professional Reduced Glow */
   .heading-primary {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     text-transform: uppercase;
     color: hsl(var(--text-primary));
-    text-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan));
-    animation: titleGlow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 3px hsl(var(--neon-cyan)), 0 0 6px hsl(var(--neon-cyan));
   }
 
   .heading-secondary {
@@ -268,8 +267,7 @@
     font-weight: 700;
     text-transform: uppercase;
     color: hsl(var(--text-primary));
-    text-shadow: 0 0 3px hsl(var(--neon-cyan)), 0 0 6px hsl(var(--neon-cyan));
-    animation: subtleGlow 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 2px hsl(var(--neon-cyan)), 0 0 4px hsl(var(--neon-cyan));
   }
 
   .text-paragraph {
@@ -291,14 +289,14 @@
     border-bottom: 1px solid hsl(var(--glass-border));
   }
 
-  /* Neon Effects */
+  /* Neon Effects - Professional Reduced Intensity */
   .neon-glow {
-    box-shadow: var(--shadow-neon);
+    box-shadow: 0 0 8px hsl(var(--neon-cyan) / 0.2);
     transition: var(--transition-glow);
   }
 
   .neon-glow:hover {
-    box-shadow: var(--glow-intense);
+    box-shadow: 0 0 12px hsl(var(--neon-cyan) / 0.3), 0 0 24px hsl(var(--neon-cyan) / 0.15);
     transform: translateY(-2px);
   }
   
@@ -348,8 +346,7 @@
 
   .neon-text {
     color: hsl(var(--neon-cyan));
-    text-shadow: 0 0 3px hsl(var(--neon-cyan)), 0 0 6px hsl(var(--neon-cyan));
-    animation: gentleGlow 2.5s ease-in-out infinite alternate;
+    text-shadow: 0 0 2px hsl(var(--neon-cyan)), 0 0 4px hsl(var(--neon-cyan));
   }
 
   .text-glow-subtle {
@@ -418,7 +415,7 @@
 
   .hover-element:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 15px hsl(var(--neon-cyan) / 0.4);
+    box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.25);
   }
 
   .hover-element:hover::before {
@@ -454,7 +451,7 @@
   }
   
   .hover-glow:hover {
-    box-shadow: var(--glow-intense);
+    box-shadow: 0 0 15px hsl(var(--neon-cyan) / 0.3), 0 0 30px hsl(var(--neon-cyan) / 0.15);
     transform: translateY(-3px);
   }
 

@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import ContactForm from '@/components/ContactForm';
 import AstronomyBackground from '@/components/AstronomyBackground';
+import Footer from '@/components/Footer';
 
 const Contact = () => {
   return (
@@ -8,6 +9,7 @@ const Contact = () => {
       <AstronomyBackground />
       <Navigation />
       <ContactForm />
+      <Footer />
     </div>
   );
 };

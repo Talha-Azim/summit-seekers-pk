@@ -5,44 +5,58 @@ const adventures = [
   {
     id: 1,
     title: "Musa ka Musala",
-    description: "Epic journey to Pakistan's second highest peak",
+    description: "Musa ka Musala's wide view lifts weary hearts",
     image: "/lovable-uploads/4fe01285-bf4e-45cb-8b53-0dabbcd39ee8.png",
     hashtags: "#MusaKaMusala #PakistanPeaks #Adventure"
   },
   {
     id: 2,
     title: "Dudipatsar Lake",
-    description: "Crystal clear waters surrounded by towering peaks",
+    description: "Dudipatsar Lake's blue mirror calms your mountain soul",
     image: "/lovable-uploads/7a5b4d0f-7d35-4fdf-b442-bb293fcb46b0.png",
     hashtags: "#DudipatsarLake #CrystalWaters #MountainLakes"
   },
   {
     id: 3,
-    title: "Dagribangla",
-    description: "Remote wilderness adventure in untouched valleys",
+    title: "Dagri Bangla Trip",
+    description: "Dagri Bangla's forests bring peace to your soul",
     image: "/lovable-uploads/1fc749f7-2e9d-4976-8e6f-86f5790afcb0.png",
     hashtags: "#Dagribangla #Wilderness #UntouchedValleys"
   },
   {
     id: 4,
     title: "Chitral to Kumrat",
-    description: "Scenic traverse through diverse mountain landscapes",
-    image: "/lovable-uploads/c93eb4d3-868f-44c0-aa61-0ee60b5922cc.png",
+    description: "Thalo Pass's wild glaciers make you look small",
+    image: "/lovable-uploads/1fc749f7-2e9d-4976-8e6f-86f5790afcb0.png",
     hashtags: "#ChitralKumrat #ScenicTraverse #MountainLandscapes"
   },
   {
     id: 5,
     title: "Skardu Trip",
-    description: "Gateway to the world's highest mountains",
-    image: "/lovable-uploads/08a42fc8-57ce-44e8-97a7-7820ca1eab9f.png",
+    description: "Skardu's tall mountains hold your brave mountain dreams",
+    image: "/lovable-uploads/05db6843-41ac-4084-b48b-6878d776ac7c.png",
     hashtags: "#SkarduTrip #Gateway #HighestMountains"
   },
   {
     id: 6,
     title: "Makra Peak Trip",
-    description: "Challenging ascent with breathtaking summit views",
-    image: "/lovable-uploads/1fc749f7-2e9d-4976-8e6f-86f5790afcb0.png",
+    description: "Makra Peak's snowy summit tests your steady will",
+    image: "/lovable-uploads/c93eb4d3-868f-44c0-aa61-0ee60b5922cc.png",
     hashtags: "#MakraPeak #ChallengingAscent #SummitViews"
+  },
+  {
+    id: 7,
+    title: "Hunza Trip",
+    description: "Hunza's timeless valley invites your bold clear heart",
+    image: "/lovable-uploads/ca8ed584-66ce-4a51-b4d2-b07fdc15e123.png",
+    hashtags: "#HunzaTrip #TimelessValley #BoldHeart"
+  },
+  {
+    id: 8,
+    title: "Kumrat Trip",
+    description: "Kumrat's green meadows calm restless and curious minds",
+    image: "/lovable-uploads/35478736-3d71-4323-904f-954ce17faa85.png",
+    hashtags: "#KumratTrip #GreenMeadows #CuriousMinds"
   }
 ];
 

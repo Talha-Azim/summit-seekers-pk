@@ -3,15 +3,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const journeyCards = [{
   id: 1,
   title: "The Beginning",
-  content: "Since day one, this journey has been more than just reaching summits. It's about discovering the untold stories that mountains whisper to those brave enough to listen. Every step upward is a step deeper into understanding ourselves and the magnificent world around us."
+  content: "This journey began long before us — it started with our grandfather, 40 years ago. For us, climbing mountains isn't just about the views at the top. It's about the patience in every slow uphill climb, the perseverance in stormy weather, and the humility gained from listening to both the mountain and your body."
 }, {
   id: 2,
   title: "The Adventure",
-  content: "From exploring hidden trails to standing beneath towering peaks, we've learned that the real treasure isn't just the destination. It's the bonds forged in the thin air, the courage found in the face of adversity, and the memories carved into our hearts like ancient petroglyphs."
+  content: "From hidden valleys to high peaks, every trip teaches us something new. The real reward isn't just reaching the top — it's the friendships, the courage in hard times, and the memories that stay with us forever. That's what makes each adventure special."
 }, {
   id: 3,
   title: "The Philosophy",
-  content: "SummitSeekers is built on the idea that the trail is more than a path—it's a teacher. Each mountain has its own personality, its own lessons to impart. We don't just climb; we commune with these ancient giants, respecting their wisdom and power."
+  content: "SummitSeekers believes that mountains are more than land — they're living stories. Every trail speaks if you walk with respect. We don't just hike — we listen, we learn, and we grow with each journey."
 }];
 const JourneySection = () => {
   const [currentCard, setCurrentCard] = useState(0);

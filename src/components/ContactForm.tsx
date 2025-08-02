@@ -141,7 +141,7 @@ const ContactForm = () => {
                     <Instagram className="w-5 h-5 text-primary" />
                   </button>
                   
-                  <button className="p-3 bg-primary/10 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300 hover-scale neon-glow" onClick={() => window.open('#', '_blank')} title="TikTok - Coming Soon">
+                  <button className="p-3 bg-primary/10 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-300 hover-scale neon-glow" onClick={() => window.open('https://www.tiktok.com/@summit.seekers.pk?_t=ZT-8yXMyrciaH0&_r=1', '_blank')}>
                     <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M19.321 5.562a5.124 5.124 0 01-.443-.258 6.228 6.228 0 01-1.137-.966c-.849-.849-1.228-1.982-1.228-3.338h-2.926v11.916c0 2.048-1.637 3.732-3.685 3.732-1.998 0-3.732-1.637-3.732-3.732s1.637-3.732 3.732-3.732c.443 0 .849.074 1.228.222v-2.926c-.379-.074-.786-.111-1.228-.111C5.562 6.37 2 9.932 2 14.296s3.562 7.926 7.926 7.926 7.926-3.562 7.926-7.926V9.194a8.88 8.88 0 005.148 1.637V8.055c-1.081 0-2.048-.443-2.679-1.228z"/>
                     </svg>
