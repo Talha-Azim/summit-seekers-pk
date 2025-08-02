@@ -20,7 +20,7 @@ const adventures = [
     id: 3,
     title: "Dagri Bangla Trip",
     description: "Dagri Bangla's forests bring peace to your soul",
-    image: "/lovable-uploads/1fc749f7-2e9d-4976-8e6f-86f5790afcb0.png",
+    image: "/lovable-uploads/08a42fc8-57ce-44e8-97a7-7820ca1eab9f.png",
     hashtags: "#Dagribangla #Wilderness #UntouchedValleys"
   },
   {
