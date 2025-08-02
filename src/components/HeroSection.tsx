@@ -40,24 +40,20 @@ const HeroSection = () => {
         </div>
 
         {/* Hero Title with Typing Effect */}
-        <h1 className="heading-primary text-4xl md:text-6xl lg:text-7xl mb-6 neon-text">
+        <h1 className="heading-primary text-4xl md:text-6xl lg:text-7xl mb-6 neon-text animate-fade-in-up">
           <span className={`inline-block overflow-hidden whitespace-nowrap ${!typingComplete ? 'animate-typing' : ''}`}>
             SUMMIT SEEKERS
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-paragraph mb-8 animate-slide-up max-w-2xl mx-auto" style={{
-        animationDelay: '0.5s'
-      }}>
+        <p className="text-xl md:text-2xl text-paragraph mb-8 animate-fade-in-up stagger-2 max-w-2xl mx-auto">
           Conquering peaks, capturing memories, and seeking the extraordinary in every ascent
         </p>
 
         {/* CTA Button */}
-        <div className="animate-slide-up" style={{
-        animationDelay: '1s'
-      }}>
-          <Button size="lg" className="px-8 py-4 text-lg font-semibold bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground neon-glow hover-scale animate-neon-pulse btn-simple" onClick={() => {
+        <div className="animate-fade-in-up stagger-3">
+          <Button size="lg" className="px-8 py-4 text-lg font-semibold bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground neon-glow hover-scale-enhanced btn-press btn-mobile focus-ring" onClick={() => {
           document.querySelector('.enhanced-instagram-posts')?.scrollIntoView({
             behavior: 'smooth'
           });

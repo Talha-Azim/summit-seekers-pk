@@ -73,10 +73,8 @@ const ContactForm = () => {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className="animate-fade-in" style={{
-          animationDelay: '0.3s'
-        }}>
-            <div className="glass-card p-8 rounded-lg hover-glow h-full">
+          <div className="animate-slide-in-left">
+            <div className="glass-card p-8 rounded-lg hover-glow card-hover h-full">
               <h2 className="heading-secondary text-2xl neon-text mb-8">
                 Get in Touch
               </h2>
@@ -141,21 +139,35 @@ const ContactForm = () => {
                 </div>
               </div>
 
-              {/* QR Code */}
+              {/* QR Codes */}
               <div className="mt-8 pt-8 border-t border-primary/20 text-center">
                 <p className="text-sm mb-4 text-[#00ffff]">Quick Connect</p>
-                <div className="w-32 h-32 mx-auto border-2 border-primary/30 rounded-lg flex items-center justify-center bg-bg-dark hover-glow">
-                  <img src="/lovable-uploads/fa10e80a-3ce2-42c5-a74c-4146dac60113.png" alt="TikTok QR Code" className="w-24 h-24 rounded" />
+                <div className="flex justify-center space-x-6">
+                  {/* Instagram QR Code */}
+                  <div className="text-center">
+                    <div className="w-24 h-24 border-2 border-primary/30 rounded-lg flex items-center justify-center bg-bg-dark hover-glow hover-scale">
+                      <svg className="w-16 h-16 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      </svg>
+                    </div>
+                    <p className="text-xs mt-2 text-[#00ffff]">Instagram</p>
+                  </div>
+                  
+                  {/* TikTok QR Code */}
+                  <div className="text-center">
+                    <div className="w-24 h-24 border-2 border-primary/30 rounded-lg flex items-center justify-center bg-bg-dark hover-glow hover-scale">
+                      <img src="/lovable-uploads/fa10e80a-3ce2-42c5-a74c-4146dac60113.png" alt="TikTok QR Code" className="w-20 h-20 rounded" />
+                    </div>
+                    <p className="text-xs mt-2 text-[#00ffff]">TikTok</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="animate-fade-in" style={{
-          animationDelay: '0.6s'
-        }}>
-            <div className="glass-card p-8 rounded-lg hover-glow">
+          <div className="animate-slide-in-right">
+            <div className="glass-card p-8 rounded-lg hover-glow card-hover">
               <h2 className="heading-secondary text-2xl neon-text mb-8">
                 Send us a Message
               </h2>
@@ -165,31 +177,31 @@ const ContactForm = () => {
                   <Label htmlFor="name" className="text-foreground mb-2 block">
                     Your Name *
                   </Label>
-                  <Input id="name" name="name" type="text" required value={formData.name} onChange={handleChange} className="contact-input" placeholder="Enter your full name" />
+                  <Input id="name" name="name" type="text" required value={formData.name} onChange={handleChange} className="contact-input focus-ring" placeholder="Enter your full name" />
                 </div>
 
                 <div>
                   <Label htmlFor="email" className="text-foreground mb-2 block">
                     Email Address *
                   </Label>
-                  <Input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} className="contact-input" placeholder="Enter your email address" />
+                  <Input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} className="contact-input focus-ring" placeholder="Enter your email address" />
                 </div>
 
                 <div>
                   <Label htmlFor="subject" className="text-foreground mb-2 block">
                     Subject *
                   </Label>
-                  <Input id="subject" name="subject" type="text" required value={formData.subject} onChange={handleChange} className="contact-input" placeholder="What's this about?" />
+                  <Input id="subject" name="subject" type="text" required value={formData.subject} onChange={handleChange} className="contact-input focus-ring" placeholder="What's this about?" />
                 </div>
 
                 <div>
                   <Label htmlFor="message" className="text-foreground mb-2 block">
                     Message *
                   </Label>
-                  <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} rows={6} className="contact-input resize-none" placeholder="Tell us about your adventure plans, questions, or just say hello!" />
+                  <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} rows={6} className="contact-input focus-ring resize-none" placeholder="Tell us about your adventure plans, questions, or just say hello!" />
                 </div>
 
-                <Button type="submit" disabled={isSubmitting} className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-accent hover:to-primary neon-glow hover-scale btn-simple disabled:opacity-50 disabled:cursor-not-allowed group">
+                <Button type="submit" disabled={isSubmitting} className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-accent hover:to-primary neon-glow hover-scale-enhanced btn-press btn-mobile focus-ring disabled:opacity-50 disabled:cursor-not-allowed group">
                   {isSubmitting ? <>
                       <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
                       Sending...

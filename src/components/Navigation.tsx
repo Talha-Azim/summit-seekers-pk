@@ -42,7 +42,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-foreground hover:text-primary transition-colors z-50" onClick={() => setIsOpen(!isOpen)}>
+          <button className="md:hidden text-foreground hover:text-primary transition-colors z-50 btn-mobile hover-scale focus-ring" onClick={() => setIsOpen(!isOpen)}>
             <div className="w-6 h-6 flex flex-col justify-center items-center">
               <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1'}`}></span>
               <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
@@ -53,12 +53,12 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         <div className={`md:hidden absolute top-full left-0 right-0 transition-all duration-300 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
-          <div className="glass-card m-4 p-6 rounded-lg">
+          <div className="glass-card m-4 p-6 rounded-lg card-hover">
             <div className="flex flex-col space-y-4">
-              <Link to="/" className={`text-lg font-medium transition-all duration-300 hover:text-primary ${location.pathname === '/' ? 'neon-text' : 'text-foreground'}`} onClick={() => setIsOpen(false)}>
+              <Link to="/" className={`text-lg font-medium transition-all duration-300 hover:text-primary btn-mobile hover-lift focus-ring rounded-lg p-2 ${location.pathname === '/' ? 'neon-text' : 'text-foreground'}`} onClick={() => setIsOpen(false)}>
                 Home
               </Link>
-              <Link to="/contact" className={`text-lg font-medium transition-all duration-300 hover:text-primary ${location.pathname === '/contact' ? 'neon-text' : 'text-foreground'}`} onClick={() => setIsOpen(false)}>
+              <Link to="/contact" className={`text-lg font-medium transition-all duration-300 hover:text-primary btn-mobile hover-lift focus-ring rounded-lg p-2 ${location.pathname === '/contact' ? 'neon-text' : 'text-foreground'}`} onClick={() => setIsOpen(false)}>
                 Contact
               </Link>
             </div>

@@ -734,4 +734,202 @@
   .parallax {
     transition: transform 0.1s linear;
   }
+
+  /* Professional Mobile-Optimized Animations */
+
+  /* Smooth entrance animations */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+  }
+
+  /* Hover effects - hardware accelerated */
+  .hover-lift {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Enhanced hover scale for better mobile experience */
+  .hover-scale-enhanced {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hover-scale-enhanced:hover {
+    transform: scale(1.03) translateY(-2px);
+  }
+
+  /* Gentle pulse for important elements */
+  .pulse-soft {
+    animation: pulseSoft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Button press feedback */
+  .btn-press {
+    transition: transform 0.1s ease-out;
+  }
+
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Smooth focus states */
+  .focus-ring {
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .focus-ring:focus {
+    box-shadow: 0 0 0 3px hsla(var(--primary), 0.3);
+    outline: none;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px hsla(var(--primary), 0.25);
+  }
+
+  /* Staggered animation delays for lists */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  /* Mobile-optimized keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* Progressive enhancement for better hardware */
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .enhanced-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .enhanced-hover:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 25px 50px -12px hsla(var(--primary), 0.4);
+    }
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav-enter {
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-nav-enter-active {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-exit {
+    transform: translateX(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-nav-exit-active {
+    transform: translateX(-100%);
+  }
+
+  /* Respect user preferences for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    .hover-scale:hover,
+    .hover-lift:hover,
+    .card-hover:hover,
+    .hover-scale-enhanced:hover {
+      transform: none;
+    }
+  }
+
+  /* Touch-friendly button sizing for mobile */
+  @media (max-width: 768px) {
+    .btn-mobile {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 12px 16px;
+    }
+    
+    .card-mobile {
+      padding: 16px;
+      margin: 8px 0;
+    }
+  }
 }
